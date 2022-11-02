@@ -1,6 +1,5 @@
 package io.github.justfoxx.cities.worlds;
 
-import io.github.justfoxx.cities.events.Player;
 import io.github.justfoxx.cities.misc.ServerMisc;
 import io.github.justfoxx.cities.state.WorldState;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
