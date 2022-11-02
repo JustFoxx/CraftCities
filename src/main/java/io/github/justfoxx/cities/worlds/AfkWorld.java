@@ -4,6 +4,7 @@ import com.mojang.serialization.Lifecycle;
 import io.github.justfoxx.cities.Global;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -32,6 +33,11 @@ public class AfkWorld extends BaseWorld{
     @Override
     protected Identifier createIdentifier() {
         return Global.id("afk");
+    }
+
+    @Override
+    public void tick(ServerPlayerEntity player) {
+        if(!isPlayerInWorld(player)) return;
     }
 
     @Override

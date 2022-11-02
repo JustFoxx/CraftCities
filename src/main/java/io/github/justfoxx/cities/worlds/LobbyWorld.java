@@ -2,6 +2,8 @@ package io.github.justfoxx.cities.worlds;
 
 import io.github.justfoxx.cities.Global;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Difficulty;
@@ -15,6 +17,18 @@ public class LobbyWorld extends BaseWorld {
     @Override
     protected Identifier createIdentifier() {
         return Global.id("lobby");
+    }
+
+    @Override
+    public void tick(ServerPlayerEntity player) {
+        if(!isPlayerInWorld(player))  {
+            if(player.isInvisible()) player.setInvisible(false);
+            return;
+        }
+        player.sendMessageToClient(Text.of("Welcome to server!"), true);
+        if(isInCenter(player)) return;
+        if(!player.isInvisible()) player.setInvisible(true);
+        Worlds.LOBBY.teleportPlayer(player);
     }
 
     @Override

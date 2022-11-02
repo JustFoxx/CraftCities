@@ -15,6 +15,7 @@ public class ServerPlayerEntityMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo info) {
         PlayerExtraEvent.TICK.events.forEach(event -> event.tick((ServerPlayerEntity) (Object) this));
+        Worlds.worlds.forEach(world -> world.tick((ServerPlayerEntity) (Object) this));
     }
 
     @Inject(method = "onDeath", at = @At("HEAD"), cancellable = true)
