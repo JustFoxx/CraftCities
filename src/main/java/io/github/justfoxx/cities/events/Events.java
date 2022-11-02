@@ -1,7 +1,6 @@
 package io.github.justfoxx.cities.events;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 
 public class Events {
 
@@ -11,8 +10,8 @@ public class Events {
         ServerLifecycleEvents.SERVER_STOPPING.register(Server::serverStopping);
         ServerLifecycleEvents.SERVER_STOPPED.register(Server::serverStopped);
 
-        ServerPlayConnectionEvents.DISCONNECT.register(Player::playerDisconnect);
-        ServerPlayConnectionEvents.JOIN.register(Player::playerJoin);
+        PlayerExtraEvent.DISCONNECTED.register(Player::playerDisconnect);
+        PlayerExtraEvent.JOINED.register(Player::playerJoin);
         PlayerExtraEvent.TICK.register(Player::playerTick);
     }
 }

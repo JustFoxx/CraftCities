@@ -1,6 +1,5 @@
 package io.github.justfoxx.cities.state;
 
-import io.github.justfoxx.cities.Global;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.PersistentState;
@@ -18,7 +17,6 @@ public class WorldState extends PersistentState {
     }
 
     public int[] getCenter() {
-        Global.logger.info("Center: " + center[0] + " " + center[1] + " " + center[2]);
         return center;
     }
 

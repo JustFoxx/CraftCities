@@ -4,7 +4,8 @@
   "package": "io.github.justfoxx.cities.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EntityDataSaver",
+    "PlayerEntityMixin",
+    "PlayerManagerMixin",
     "ServerPlayerEntityMixin"
   ],
   "injectors": {

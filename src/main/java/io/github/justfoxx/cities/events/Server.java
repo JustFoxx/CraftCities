@@ -1,5 +1,6 @@
 package io.github.justfoxx.cities.events;
 
+import io.github.justfoxx.cities.helper.PlayerHelper;
 import io.github.justfoxx.cities.misc.ServerMisc;
 import io.github.justfoxx.cities.scoreboard.Scoreboards;
 import io.github.justfoxx.cities.worlds.Worlds;
@@ -21,5 +22,7 @@ abstract class Server {
         Worlds.LOBBY.getOrCreateWorld(server);
         Worlds.AFK.getOrCreateWorld(server);
         Scoreboards.GLOBAL_SIDEBAR.getOrCreateSidebar(server);
+        Scoreboards.GLOBAL_SIDEBAR.showSidebar(server);
+        PlayerHelper.register();
     }
 }

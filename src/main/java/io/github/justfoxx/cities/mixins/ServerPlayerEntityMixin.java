@@ -11,11 +11,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerPlayerEntity.class)
-public class ServerPlayerEntityMixin {
+public abstract class ServerPlayerEntityMixin {
+
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo info) {
         PlayerExtraEvent.TICK.events.forEach(event -> event.tick((ServerPlayerEntity) (Object) this));
         Worlds.worlds.forEach(world -> world.tick((ServerPlayerEntity) (Object) this));
+    }
+
+
+    @Inject(method = "onDisconnect", at = @At("HEAD"))
+    public void onDisconnect(CallbackInfo ci) {
+        PlayerExtraEvent.DISCONNECTED.events.forEach(event -> event.disconnected((ServerPlayerEntity) (Object) this));
     }
 
     @Inject(method = "onDeath", at = @At("HEAD"), cancellable = true)
